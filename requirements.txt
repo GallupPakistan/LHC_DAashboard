@@ -4,3 +4,5 @@ openpyxl
 numpy
 pandas
 matplotlib
+streamlit==1.60.0
+starlette<1.4.0
