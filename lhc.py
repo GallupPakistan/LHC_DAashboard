@@ -433,7 +433,7 @@ with tabs[0]:
     ))
     fig_timeline.update_layout(**CHART_LAYOUT, **_AX, height=280, margin=_MARGIN, title="", showlegend=True,
                                  legend=dict(bgcolor="rgba(255,255,255,0.85)", borderwidth=0, orientation="h", y=1.08))
-    st.plotly_chart(fig_timeline, use_container_width=True)
+    st.plotly_chart(fig_timeline, width='stretch')
 
     c1, c2, c3 = st.columns(3)
 
@@ -452,7 +452,7 @@ with tabs[0]:
                                legend=LEGEND_DEFAULT, margin=dict(l=10, r=180, t=30, b=10))
         fig_cat.update_xaxes(showgrid=False, zeroline=False)
         fig_cat.update_yaxes(categoryorder="total ascending", showgrid=False, zeroline=False)
-        st.plotly_chart(fig_cat, use_container_width=True)
+        st.plotly_chart(fig_cat, width='stretch')
 
     with c2:
         st.markdown('<div class="section-title">Cause List Distribution</div>', unsafe_allow_html=True)
@@ -483,7 +483,7 @@ with tabs[0]:
                                    itemwidth=80,
                                ),
                                margin=dict(l=10, r=10, t=20, b=80))
-        st.plotly_chart(fig_leg, use_container_width=True)
+        st.plotly_chart(fig_leg, width='stretch')
 
     with c3:
         st.markdown('<div class="section-title">Bench Type Breakdown</div>', unsafe_allow_html=True)
@@ -502,7 +502,7 @@ with tabs[0]:
                                  margin=dict(l=10, r=10, t=30, b=60))
         fig_bench.update_xaxes(showgrid=False, zeroline=False, tickangle=-15)
         fig_bench.update_yaxes(showgrid=True, gridcolor="#EDE7D9", zeroline=False)
-        st.plotly_chart(fig_bench, use_container_width=True)
+        st.plotly_chart(fig_bench, width='stretch')
 
     c4, c5 = st.columns(2)
     with c4:
@@ -560,7 +560,7 @@ with tabs[0]:
             xref="paper", yref="paper", x=0, y=-0.62,
             showarrow=False, font=dict(size=8.5, color="#777"), align="left"
         )
-        st.plotly_chart(fig_rem, use_container_width=True)
+        st.plotly_chart(fig_rem, width='stretch')
 
     with c5:
         st.markdown('<div class="section-title">Hearing Day Patterns</div>', unsafe_allow_html=True)
@@ -581,7 +581,7 @@ with tabs[0]:
         fig_day.update_xaxes(showgrid=False, zeroline=False)
         fig_day.update_yaxes(showgrid=True, gridcolor="#EDE7D9", zeroline=False,
                               title="Number of Cases")
-        st.plotly_chart(fig_day, use_container_width=True)
+        st.plotly_chart(fig_day, width='stretch')
 
 # ══════════════════════════════════════════════
 # TAB 2 — DAILY CAUSE LIST
@@ -626,7 +626,7 @@ with tabs[1]:
             fig_cd.update_traces(textposition="outside")
             fig_cd.update_layout(**CHART_LAYOUT, **_AX, height=380, margin=_MARGIN, coloraxis_showscale=False, legend=LEGEND_DEFAULT)
             fig_cd.update_yaxes(categoryorder="total ascending")
-            st.plotly_chart(fig_cd, use_container_width=True)
+            st.plotly_chart(fig_cd, width='stretch')
 
         with cl2:
             st.markdown('<div class="section-title">Case Type Breakdown</div>', unsafe_allow_html=True)
@@ -636,7 +636,7 @@ with tabs[1]:
                             color_discrete_sequence=PALETTE, hole=0.5)
             fig_td.update_traces(textinfo="label+value", pull=[0.04]*len(type_day))
             fig_td.update_layout(**CHART_LAYOUT, **_AX, height=380, margin=_MARGIN, showlegend=True, legend=LEGEND_DEFAULT)
-            st.plotly_chart(fig_td, use_container_width=True)
+            st.plotly_chart(fig_td, width='stretch')
 
         st.markdown('<div class="section-title">Hearing Schedule Detail</div>', unsafe_allow_html=True)
         display_cols = ["Court Location", "Bench Type", "Justice_Short", "Court", "Legends", "Cat_Group", "Case#", "Title", "Lawyer", "Remark_Group"]
@@ -644,7 +644,7 @@ with tabs[1]:
             "Court Location": "City", "Justice_Short": "Justice",
             "Cat_Group": "Category", "Remark_Group": "Status"
         }).reset_index(drop=True)
-        st.dataframe(show, use_container_width=True, height=350)
+        st.dataframe(show, width='stretch', height=350)
 
 # ══════════════════════════════════════════════
 # TAB 3 — JUDGE ANALYSIS
@@ -677,7 +677,7 @@ with tabs[2]:
         fig_j.update_layout(**CHART_LAYOUT, **_AX, height=520, margin=_MARGIN, coloraxis_colorbar=dict(title="Avg/Day"),
                              legend=LEGEND_DEFAULT)
         fig_j.update_yaxes(categoryorder="total ascending")
-        st.plotly_chart(fig_j, use_container_width=True)
+        st.plotly_chart(fig_j, width='stretch')
 
     with jc2:
         st.markdown('<div class="section-title">Workload Efficiency Bubble</div>', unsafe_allow_html=True)
@@ -690,7 +690,7 @@ with tabs[2]:
                                      "Cases_Per_Day": "Cases per Day",
                                      "Stay_Pct": "Stay %"})
         fig_bub.update_layout(**CHART_LAYOUT, **_AX, height=520, margin=_MARGIN, legend=LEGEND_DEFAULT)
-        st.plotly_chart(fig_bub, use_container_width=True)
+        st.plotly_chart(fig_bub, width='stretch')
 
     st.markdown('<div class="section-title">Judge-wise Case Category Distribution (Top 10)</div>', unsafe_allow_html=True)
     top10_j = judge_df.nlargest(10, "Total_Cases")["Justice_Short"].tolist()
@@ -700,7 +700,7 @@ with tabs[2]:
                       labels={"Justice_Short": "Justice", "Count": "Cases", "Cat_Group": "Category"})
     fig_jcat.update_layout(**CHART_LAYOUT, **_AX, height=360, margin=_MARGIN, xaxis_tickangle=-25,
                             legend=dict(bgcolor="rgba(255,255,255,0.85)", borderwidth=0, orientation="h", y=-0.25))
-    st.plotly_chart(fig_jcat, use_container_width=True)
+    st.plotly_chart(fig_jcat, width='stretch')
 
     st.markdown('<div class="section-title">Most Repeatedly Heard Cases (Per Justice)</div>', unsafe_allow_html=True)
     rep_cases = fdf.groupby(["Title", "Justice_Short"]).size().reset_index(name="Hearings")
@@ -713,11 +713,11 @@ with tabs[2]:
     fig_rep.update_layout(**CHART_LAYOUT, **_AX, height=450, margin=_MARGIN,
                            showlegend=True, legend=dict(bgcolor="rgba(255,255,255,0.85)", borderwidth=0, orientation="h", y=-0.22))
     fig_rep.update_yaxes(categoryorder="total ascending")
-    st.plotly_chart(fig_rep, use_container_width=True)
+    st.plotly_chart(fig_rep, width='stretch')
 
     with st.expander("📊 Full Judge Statistics Table"):
         st.dataframe(judge_df.sort_values("Total_Cases", ascending=False).reset_index(drop=True),
-                     use_container_width=True)
+                     width='stretch')
 
 # ══════════════════════════════════════════════
 # TAB 4 — CATEGORY DEEP DIVE
@@ -740,7 +740,7 @@ with tabs[3]:
                                margin=dict(l=10, r=210, t=30, b=10))
     fig_cat_vol.update_xaxes(showgrid=False, zeroline=False)
     fig_cat_vol.update_yaxes(categoryorder="total ascending", showgrid=False, zeroline=False)
-    st.plotly_chart(fig_cat_vol, use_container_width=True)
+    st.plotly_chart(fig_cat_vol, width='stretch')
 
     # ── Writ vs Other: Proportion over time
     st.markdown('<div class="section-title">Writ vs Other Cases — Proportion Over Time</div>', unsafe_allow_html=True)
@@ -773,7 +773,7 @@ with tabs[3]:
     fig_writ_trend.update_layout(**CHART_LAYOUT, **_AX, height=280, margin=_MARGIN,
                                   yaxis_title="% of Daily Cases",
                                   legend=dict(bgcolor="rgba(255,255,255,0.85)", borderwidth=0, orientation="h", y=1.08))
-    st.plotly_chart(fig_writ_trend, use_container_width=True)
+    st.plotly_chart(fig_writ_trend, width='stretch')
 
     # ── Writ vs Other stacked bar over time (absolute count)
     fig_writ_stack = go.Figure()
@@ -788,7 +788,7 @@ with tabs[3]:
     fig_writ_stack.update_layout(**CHART_LAYOUT, **_AX, height=250, margin=_MARGIN,
                                   barmode="stack", yaxis_title="Cases",
                                   legend=dict(bgcolor="rgba(255,255,255,0.85)", borderwidth=0, orientation="h", y=1.08))
-    st.plotly_chart(fig_writ_stack, use_container_width=True)
+    st.plotly_chart(fig_writ_stack, width='stretch')
 
     # ── Which judge hears most Writ Petitions
     st.markdown('<div class="section-title">Which Judge Hears Most Writ Petitions</div>', unsafe_allow_html=True)
@@ -810,7 +810,7 @@ with tabs[3]:
         fig_wj_vol.update_layout(**CHART_LAYOUT, **_AX, height=500, margin=_MARGIN,
                                   coloraxis_showscale=False)
         fig_wj_vol.update_yaxes(categoryorder="total ascending")
-        st.plotly_chart(fig_wj_vol, use_container_width=True)
+        st.plotly_chart(fig_wj_vol, width='stretch')
 
     with wc2:
         st.markdown("**Writ % of Total Caseload (Top 20 by Writ Volume)**", unsafe_allow_html=False)
@@ -824,7 +824,7 @@ with tabs[3]:
         fig_wj_pct.update_layout(**CHART_LAYOUT, **_AX, height=500, margin=_MARGIN,
                                   coloraxis_showscale=False)
         fig_wj_pct.update_yaxes(categoryorder="total ascending")
-        st.plotly_chart(fig_wj_pct, use_container_width=True)
+        st.plotly_chart(fig_wj_pct, width='stretch')
 
     # ── Bench differences for Writ vs Other
     st.markdown('<div class="section-title">Bench Type Differences — Writ vs Other Cases</div>', unsafe_allow_html=True)
@@ -844,7 +844,7 @@ with tabs[3]:
                                   title="Absolute Count by Bench",
                                   legend=dict(bgcolor="rgba(255,255,255,0.85)", borderwidth=0, orientation="h", y=-0.3),
                                   xaxis_tickangle=-15)
-        st.plotly_chart(fig_bw_abs, use_container_width=True)
+        st.plotly_chart(fig_bw_abs, width='stretch')
 
     with bc2:
         fig_bw_pct = px.bar(bench_writ_pct, x="Bench Type", y="Pct", color="Writ_Flag",
@@ -856,7 +856,7 @@ with tabs[3]:
                                   title="% Composition by Bench",
                                   legend=dict(bgcolor="rgba(255,255,255,0.85)", borderwidth=0, orientation="h", y=-0.3),
                                   xaxis_tickangle=-15)
-        st.plotly_chart(fig_bw_pct, use_container_width=True)
+        st.plotly_chart(fig_bw_pct, width='stretch')
 
     # ── Sub-category drill down (Writ types)
     st.markdown('<div class="section-title">Writ Petition Sub-categories (Top 20)</div>', unsafe_allow_html=True)
@@ -872,7 +872,7 @@ with tabs[3]:
                             margin=dict(l=10, r=220, t=30, b=10))
     fig_wsub.update_xaxes(showgrid=False, zeroline=False)
     fig_wsub.update_yaxes(categoryorder="total ascending", showgrid=False, zeroline=False, tickfont=dict(size=10))
-    st.plotly_chart(fig_wsub, use_container_width=True)
+    st.plotly_chart(fig_wsub, width='stretch')
 
     # ── Other top sub-categories selector
     st.markdown('<div class="section-title">Drill into Any Category — Sub-type Breakdown</div>', unsafe_allow_html=True)
@@ -889,7 +889,7 @@ with tabs[3]:
                              coloraxis_showscale=False, margin=dict(l=10, r=220, t=30, b=10))
     fig_drill.update_xaxes(showgrid=False, zeroline=False)
     fig_drill.update_yaxes(categoryorder="total ascending", showgrid=False, zeroline=False, tickfont=dict(size=10))
-    st.plotly_chart(fig_drill, use_container_width=True)
+    st.plotly_chart(fig_drill, width='stretch')
 
     # ── Category by City heatmap (% within city)
     st.markdown('<div class="section-title">Category Mix by City (% within each city)</div>', unsafe_allow_html=True)
@@ -901,7 +901,7 @@ with tabs[3]:
                              aspect="auto", text_auto=True,
                              labels=dict(color="% of Cases"))
     fig_cc_heat.update_layout(**CHART_LAYOUT, height=300, margin=_MARGIN)
-    st.plotly_chart(fig_cc_heat, use_container_width=True)
+    st.plotly_chart(fig_cc_heat, width='stretch')
 
     # ── Monthly category trend
     st.markdown('<div class="section-title">Category Trend by Month</div>', unsafe_allow_html=True)
@@ -912,7 +912,7 @@ with tabs[3]:
     fig_cat_month.update_layout(**CHART_LAYOUT, **_AX, height=360, margin=_MARGIN,
                                   legend=dict(bgcolor="rgba(255,255,255,0.85)", borderwidth=0, orientation="h", y=-0.2))
     fig_cat_month.update_xaxes(tickangle=-20)
-    st.plotly_chart(fig_cat_month, use_container_width=True)
+    st.plotly_chart(fig_cat_month, width='stretch')
 
 
 # ══════════════════════════════════════════════
@@ -933,7 +933,7 @@ with tabs[4]:
                               hole=0.55)
         fig_city_inf.update_traces(textinfo="label+percent+value", pull=[0.04]*4)
         fig_city_inf.update_layout(**CHART_LAYOUT, **_AX, height=340, margin=_MARGIN, showlegend=False, legend=LEGEND_DEFAULT)
-        st.plotly_chart(fig_city_inf, use_container_width=True)
+        st.plotly_chart(fig_city_inf, width='stretch')
 
     with ic2:
         st.markdown('<div class="section-title">Bench Type by City</div>', unsafe_allow_html=True)
@@ -943,7 +943,7 @@ with tabs[4]:
                         text="Count")
         fig_bc.update_traces(texttemplate="%{text:,}", textposition="outside")
         fig_bc.update_layout(**CHART_LAYOUT, **_AX, height=340, margin=_MARGIN, legend=dict(bgcolor="rgba(255,255,255,0.85)", borderwidth=0, orientation="h", y=-0.25))
-        st.plotly_chart(fig_bc, use_container_width=True)
+        st.plotly_chart(fig_bc, width='stretch')
 
     st.markdown('<div class="section-title">Top 15 Busiest Courts</div>', unsafe_allow_html=True)
     court_load = fdf.groupby(["Court Location","Court"]).agg(
@@ -963,14 +963,14 @@ with tabs[4]:
     fig_courts.update_layout(**CHART_LAYOUT, **_AX, height=450, margin=_MARGIN,
                               legend=dict(bgcolor="rgba(255,255,255,0.85)", borderwidth=0, title="City", orientation="h", y=-0.15))
     fig_courts.update_yaxes(categoryorder="total ascending")
-    st.plotly_chart(fig_courts, use_container_width=True)
+    st.plotly_chart(fig_courts, width='stretch')
 
     st.markdown('<div class="section-title">Category Heatmap by City & Bench</div>', unsafe_allow_html=True)
     heat = fdf.groupby(["Court Location","Cat_Group"]).size().unstack(fill_value=0)
     fig_heat = px.imshow(heat, color_continuous_scale=[[0,CREAM],[0.4,GOLD],[1,NAVY]],
                          aspect="auto", text_auto=True)
     fig_heat.update_layout(**CHART_LAYOUT, **_AX, height=280, margin=_MARGIN, legend=LEGEND_DEFAULT)
-    st.plotly_chart(fig_heat, use_container_width=True)
+    st.plotly_chart(fig_heat, width='stretch')
 
 # ══════════════════════════════════════════════
 # TAB 6 — CITY COMPARISON  (was tab 5)
@@ -1000,7 +1000,7 @@ with tabs[5]:
                            labels={"value":"Cases","variable":"Type","Court Location":"City"})
         fig_ccomp.update_layout(**CHART_LAYOUT, **_AX, height=300, margin=_MARGIN, title="Case Volume Comparison",
                                   legend=dict(bgcolor="rgba(255,255,255,0.85)", borderwidth=0, orientation="h", y=-0.25))
-        st.plotly_chart(fig_ccomp, use_container_width=True)
+        st.plotly_chart(fig_ccomp, width='stretch')
 
     with cc2:
         fig_radar_data = city_summary.set_index("Court Location")[["Justices","Courts","Hearing_Days","Stay_Pct"]].T
@@ -1010,7 +1010,7 @@ with tabs[5]:
                            text="Avg_Daily")
         fig_cbar2.update_traces(texttemplate="%{text:,.0f}", textposition="outside")
         fig_cbar2.update_layout(**CHART_LAYOUT, **_AX, height=300, margin=_MARGIN, title="Avg Cases Per Hearing Day", showlegend=False, legend=LEGEND_DEFAULT)
-        st.plotly_chart(fig_cbar2, use_container_width=True)
+        st.plotly_chart(fig_cbar2, width='stretch')
 
     st.markdown('<div class="section-title">Timeline by City</div>', unsafe_allow_html=True)
     city_time = fdf.groupby(["Hearing Date","Court Location"]).size().reset_index(name="Cases")
@@ -1019,7 +1019,7 @@ with tabs[5]:
                             markers=True)
     fig_city_time.update_layout(**CHART_LAYOUT, **_AX, height=320, margin=_MARGIN,
                                   legend=dict(bgcolor="rgba(255,255,255,0.85)", borderwidth=0, orientation="h", y=-0.2))
-    st.plotly_chart(fig_city_time, use_container_width=True)
+    st.plotly_chart(fig_city_time, width='stretch')
 
     st.markdown('<div class="section-title">Category Distribution by City</div>', unsafe_allow_html=True)
     city_cat = fdf.groupby(["Court Location","Cat_Group"]).size().reset_index(name="Count")
@@ -1029,13 +1029,13 @@ with tabs[5]:
                           text="Pct", labels={"Pct":"%","Court Location":"City","Cat_Group":"Category"})
     fig_city_cat.update_traces(texttemplate="%{text:.1f}%", textposition="inside")
     fig_city_cat.update_layout(**CHART_LAYOUT, **_AX, height=320, margin=_MARGIN, legend=dict(bgcolor="rgba(255,255,255,0.85)", borderwidth=0, orientation="h", y=-0.2))
-    st.plotly_chart(fig_city_cat, use_container_width=True)
+    st.plotly_chart(fig_city_cat, width='stretch')
 
     st.markdown('<div class="section-title">City Summary Table</div>', unsafe_allow_html=True)
     st.dataframe(city_summary.rename(columns={
         "Court Location":"City","Total_Cases":"Total Cases","Unique_Cases":"Unique Cases",
         "Hearing_Days":"Hearing Days","Avg_Daily":"Avg/Day","Stay_Pct":"Stay %"
-    }), use_container_width=True)
+    }), width='stretch')
 
 # ══════════════════════════════════════════════
 # TAB 7 — LAWYER INTELLIGENCE  (was tab 6)
@@ -1067,7 +1067,7 @@ with tabs[6]:
         fig_law.update_traces(textposition="outside")
         fig_law.update_layout(**CHART_LAYOUT, **_AX, height=550, margin=_MARGIN, coloraxis_showscale=False, legend=LEGEND_DEFAULT)
         fig_law.update_yaxes(categoryorder="total ascending")
-        st.plotly_chart(fig_law, use_container_width=True)
+        st.plotly_chart(fig_law, width='stretch')
 
     with lc2:
         st.markdown('<div class="section-title">Lawyer Activity by City</div>', unsafe_allow_html=True)
@@ -1079,7 +1079,7 @@ with tabs[6]:
                         text="Unique Lawyers")
         fig_lc.update_traces(texttemplate="%{text:,}", textposition="outside")
         fig_lc.update_layout(**CHART_LAYOUT, **_AX, height=280, margin=_MARGIN, showlegend=False, legend=LEGEND_DEFAULT)
-        st.plotly_chart(fig_lc, use_container_width=True)
+        st.plotly_chart(fig_lc, width='stretch')
 
         st.markdown('<div class="section-title">Category Focus (Top Lawyers)</div>', unsafe_allow_html=True)
         top5_lawyers = top_lawyers["Lawyer"].head(5).tolist()
@@ -1097,7 +1097,7 @@ with tabs[6]:
                                             y=-0.72, yanchor="top", font=dict(size=9),
                                             title=dict(text="Category  ", side="left", font=dict(size=9))))
         fig_lcat.update_xaxes(title_text="")   # remove "Lawyer" axis label entirely
-        st.plotly_chart(fig_lcat, use_container_width=True)
+        st.plotly_chart(fig_lcat, width='stretch')
 
     st.markdown('<div class="section-title">Lawyer Search</div>', unsafe_allow_html=True)
     search_name = st.text_input("🔍 Search Lawyer by Name (partial match OK)", placeholder="e.g. Muhammad Azhar")
@@ -1106,7 +1106,7 @@ with tabs[6]:
         if len(res):
             st.success(f"Found {len(res):,} cases for lawyers matching '{search_name}'")
             by_date = res.groupby(["Hearing Date","Primary_Lawyer","Court Location"]).size().reset_index(name="Cases")
-            st.dataframe(by_date.sort_values("Hearing Date", ascending=False), use_container_width=True)
+            st.dataframe(by_date.sort_values("Hearing Date", ascending=False), width='stretch')
         else:
             st.warning("No lawyer found with that name.")
 
@@ -1149,7 +1149,7 @@ with tabs[7]:
                 "Justice_Short":"Justice","Cat_Group":"Category","Remark_Group":"Status",
                 "Court Location":"City","Hearing Date":"Date","Hearing Day":"Day"
             }).sort_values("Date", ascending=False).reset_index(drop=True),
-            use_container_width=True, height=500
+            width='stretch', height=500
         )
 
         # Repeated hearings
@@ -1157,7 +1157,7 @@ with tabs[7]:
         repeat = repeat[repeat["Hearing Count"] > 1].sort_values("Hearing Count", ascending=False)
         if len(repeat):
             st.markdown('<div class="section-title">⚠️ Repeatedly Heard Cases (Possible Delays)</div>', unsafe_allow_html=True)
-            st.dataframe(repeat.head(20), use_container_width=True)
+            st.dataframe(repeat.head(20), width='stretch')
     else:
         st.info("No matching cases found. Try adjusting your search criteria.")
 
