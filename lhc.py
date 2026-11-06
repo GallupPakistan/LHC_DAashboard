@@ -211,7 +211,7 @@ _AX = dict(xaxis=dict(showgrid=False, zeroline=False),
 # ─────────────────────────────────────────────
 # DATA LOADING & PREPROCESSING
 # ─────────────────────────────────────────────
-@st.cache_data(show_spinner="Loading court data…")
+@st.cache_data(ttl=3600, show_spinner="Loading court data…")
 def load_data():
     df = pd.read_excel("combined_data.xlsx")
 
